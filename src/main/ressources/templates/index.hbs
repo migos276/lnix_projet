@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="admin-page">
+<header class="admin-header">
+  <div class="logo">
+    <img src="/static/logo_jpg.png" alt="Linx Concept Logo" class="logo-img">
+    <h1>Tableau de Bord</h1>
+  </div>
+  <div class="header-actions">
+    <input type="text" placeholder="Rechercher..." class="search-bar">
+    <div class="dropdown">
+      <i class="fas fa-bars" onclick="toggleDropdown()"></i>
+      <div class="dropdown-content" id="dropdown-content" style="display: none;">
+        <a href="#">Profil</a>
+        <a href="#">Paramètres</a>
+        <a href="#" onclick="toggleLoginModal()">Déconnexion</a>
+      </div>
+    </div>
+    <i class="fas fa-user" onclick="toggleLoginModal()"></i>
+  </div>
+</header>
+
+<div class="admin-container">
+  <aside class="sidebar-left">
+    <h2>Équipe</h2>
+    <div class="creator-cards" id="creator-cards">
+      {{#each creators}}
+        <div class="creator-card" data-creator-id="{{id}}" onclick="loadCreatorProfile({{id}})">
+          <img src="{{avatar_url}}" alt="{{nom}}">
+          <div class="card-text">
+            <h3>{{nom}}</h3>
+            <p>{{role}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="creator-profile" id="creator-profile">
+      <div class="profile-header">
+        <img src="/static/image4.jpg" alt="Profile Image" class="profile-image">
+        <div class="profile-info">
+          <h2 class="creator-name">Sélectionnez un créateur</h2>
+          <p class="creator-role">Rôle: -</p>
+        </div>
+      </div>
+      <div class="add-template">
+        <div class="add-button" onclick="showAddTemplateForm()">
+          <i class="fas fa-plus"></i> Ajouter un Template
+        </div>
+        <div class="add-template-form" id="add-template-form" style="display: none;">
+          <h3 id="template-form-title">Ajouter un Template</h3>
+          <form id="template-form" enctype="multipart/form-data">
+            <input type="hidden" id="template-id" name="id">
+            <input type="text" placeholder="Nom du Template" id="template-name" name="name" required>
+            <input type="file" id="template-file" name="file" accept="image/*,video/*,audio/*">
+            <textarea placeholder="Description" id="template-description" name="description" required></textarea>
+            <select id="template-type" name="type" required>
+              <option value="">Sélectionner le type</option>
+              <option value="image">Image</option>
+              <option value="video">Vidéo</option>
+              <option value="audio">Audio</option>
+            </select>
+            <label>
+              <input type="checkbox" id="template-visible" name="visibleClients" checked>
+              Visible pour les clients
+            </label>
+            <button type="button" id="template-submit-btn" onclick="submitTemplate()">Enregistrer</button>
+            <button type="button" onclick="showAddTemplateForm()">Annuler</button>
+          </form>
+        </div>
+      </div>
+      <div class="templates-grid" id="templates-grid">
+        <!-- Templates will be loaded here -->
+      </div>
+    </div>
+  </main>
+
+  <aside class="sidebar-right">
+    <h2>Gestion Admin</h2>
+    <div class="admin-section testimonials-section">
+      <h3>Témoignages</h3>
+      <div class="add-testimonial">
+        <form id="testimonial-form" enctype="multipart/form-data">
+          <input type="text" placeholder="Titre" name="title" required>
+          <select name="type" required onchange="toggleTestimonialFields(this)">
+            <option value="">Sélectionner le type</option>
+            <option value="texte">Écrit</option>
+            <option value="audio">Audio</option>
+            <option value="video">Vidéo</option>
+          </select>
+          <textarea placeholder="Contenu (pour témoignage écrit)" name="content" id="testimonial-content" style="display: none;"></textarea>
+          <input type="file" name="file" id="testimonial-file" accept="audio/*,video/*" style="display: none;">
+          <input type="number" placeholder="ID Auteur (optionnel)" name="authorId">
+          <button type="button" onclick="submitTestimonial()">Ajouter</button>
+        </form>
+      </div>
+      <div class="testimonials-grid" id="testimonials-grid">
+        {{#each testimonials}}
+          <div class="testimonial-card" data-id="{{id}}">
+            <div class="testimonial-content">
+              <h4>{{titre}}</h4>
+              <p>Type: {{type}}</p>
+              {{#if contenu}}
+               
+              {{/if}}
+              {{#if fichier_url}}
+                <small>Fichier: {{fichier_url}}</small>
+              {{/if}}
+            </div>
+            <i class="fas fa-trash" onclick="deleteTestimonial({{id}})"></i>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="admin-section partners-section">
+      <h3>Partenaires</h3>
+      <div class="add-partner">
+        <form id="partner-form" enctype="multipart/form-data">
+          <input type="text" placeholder="Nom du Partenaire" name="name" required>
+          <input type="file" name="logo" accept="image/*" required>
+          <button type="button" onclick="submitPartner()">Ajouter</button>
+        </form>
+      </div>
+      <div class="partners-grid" id="partners-grid">
+        {{#each partners}}
+          <div class="partner-card" data-id="{{id}}">
+            <img src="/uploads/{{logo_url}}" alt="{{nom}}">
+            <span>{{nom}}</span>
+            <i class="fas fa-trash" onclick="deletePartner({{id}})"></i>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </aside>
+</div>
+
+<div class="login-modal" id="login-modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="toggleLoginModal()">×</span>
+    <h2>Connexion</h2>
+    <input type="text" placeholder="Email" id="login-username">
+    <input type="password" placeholder="Mot de passe" id="login-password">
+    <button onclick="submitLogin()">Se connecter</button>
+  </div>
+</div>
+
+<script>
+function toggleTestimonialFields(select) {
+  const contentField = document.getElementById('testimonial-content');
+  const fileField = document.getElementById('testimonial-file');
+  
+  if (select.value === 'texte') {
+    contentField.style.display = 'block';
+    contentField.required = true;
+    fileField.style.display = 'none';
+    fileField.required = false;
+  } else if (select.value === 'audio' || select.value === 'video') {
+    contentField.style.display = 'none';
+    contentField.required = false;
+    fileField.style.display = 'block';
+    fileField.required = true;
+    fileField.accept = select.value === 'audio' ? 'audio/*' : 'video/*';
+  } else {
+    contentField.style.display = 'none';
+    contentField.required = false;
+    fileField.style.display = 'none';
+    fileField.required = false;
+  }
+}
+</script>
+<script src="/static/script.js"></script>
+</body>
+</html>
