@@ -1,0 +1,680 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.career-page {
+  font-family: "inter", sans-serif;
+  color: #1f2937;
+  overflow-x: hidden;
+}
+
+/* Sidebar fixe à gauche */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 60px;
+  background-color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5px;
+  z-index: 2025;
+  transition: width 0.3s ease;
+}
+
+.career-page .sidebar .icon {
+  color: white;
+  font-size: 24px;
+  margin: 20px 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.career-page .sidebar .icon:hover {
+  transform: scale(1.2);
+  color: #e74c3c;
+}
+
+/* Overlay pour l'effet sombre et flou */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 60px;
+  height: 100vh;
+  width: 0;
+  background-color: #1f2937;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  z-index: 999;
+}
+
+.navbar.active {
+  width: 200px;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 20px;
+  margin-top: 45px; /* Alignement avec les icônes */
+}
+
+.navbar ul li {
+  margin: 18px 0;
+  height: 45px; /* Hauteur pour aligner avec les icônes (24px icône + 20px margin) */
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  transform: translateX(10px);
+  color: #e74c3c;
+}
+
+/* Header fixé */
+.header {
+  position: fixed;
+  top: 0;
+  left: 60px;
+  right: 0;
+  height: 70px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 998;
+}
+
+.header .menu-icon-mobile {
+  display: none;
+  font-size: 24px;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+}
+
+.header .logo img {
+  height: 35px;
+  margin-right: 10px;
+}
+
+.header .logo span {
+  font-family: "manrope", cursive;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.header .right {
+  display: flex;
+  align-items: center;
+}
+
+.header .search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.header .search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.header .search-bar i {
+  color: #1f2937;
+  margin-right: 5px;
+}
+
+.header .phone-icon,
+.header .whatsapp-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.header .phone-icon {
+  color: #1f2937;
+  animation: ring 2s infinite;
+}
+
+.header .whatsapp-icon {
+  color: #25d366;
+}
+
+@keyframes ring {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: rotate(10deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: rotate(-10deg);
+  }
+}
+
+/* Bouton Retour en haut */
+.career-page .scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #e74c3c;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* opacity: 0; */
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.career-page .scroll-top.visible {
+  opacity: 1;
+}
+
+.career-page .scroll-top i {
+  font-size: 24px;
+}
+
+/* Animation au scroll */
+.career-page .fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.career-page .fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section Hero de la page Carrière */
+.career-page .hero-section {
+    display: flex;
+    align-items: center;
+    padding: 180px 20px 100px;
+    max-width: 100vw;
+    margin: 0 auto 0 70px; /* 250px pour la sidebar + 20px de marge */
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    /* border-radius: 15px; */
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+    position: relative;
+    overflow: hidden;
+    /* opacity: 0; */
+    /* transform: translateY(50px); */
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+
+.career-page .hero-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.career-page .hero-section .icon {
+    font-size: 60px;
+    color: #e74c3c;
+    position: absolute;
+    top: 100px;
+    left: 110px;
+    animation: rotateIcon 4s infinite linear;
+}
+
+@keyframes rotateIcon {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.career-page .hero-section .content {
+    padding-left: 80px;
+    text-align: left;
+}
+
+.career-page .hero-section h1 {
+    font-size: 35px;
+    color: #1f2937;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.career-page .hero-section .subtitle {
+    font-size: 17px;
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.career-page .hero-section p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.career-page .hero-section .roles {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.career-page .hero-section .role-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100px;
+    /* opacity: 0; */
+    /* transform: translateY(20px); */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.career-page .hero-section .role-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.career-page .hero-section .role-card i {
+    font-size: 25px;
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+.career-page .hero-section .role-card span {
+    font-size: 13px;
+    color: #1f2937;
+    display: block;
+}
+
+.career-page .hero-section .cta-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.career-page .hero-section .cta-btn:hover {
+    transform: scale(1.05);
+    background-color: #1f2937;
+}
+
+.career-page .hero-section .decoration {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, #e74c3c 0%, rgba(231, 76, 60, 0) 70%);
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.career-page .hero-section .image-block{
+    width: 650px;
+    min-width: 400px;
+    overflow: hidden;
+}
+
+.career-page .hero-section .image-block img{
+    width: 100%;
+    object-position: center;
+}
+
+
+
+/* Section Notre Culture de la page Carrière */
+
+.career-page .culture-section {
+    padding: 60px 30px;
+    max-width: 100vw;
+    background: rgba(255, 11, 11, 0.2);
+    margin: 0 auto 0 60px; /* 250px pour la sidebar + 20px de marge */
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    /* opacity: 0; */
+    /* transform: translateY(50px); */
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.career-page .culture-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.career-page .culture-section .text-block {
+    flex: 1;
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    padding: 30px;
+    border-radius: 10px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    text-align: left;
+}
+
+.career-page .culture-section .text-block h2 {
+    font-size: 36px;
+    text-transform: uppercase;
+    color: #1f2937;
+    margin-bottom: 20px;
+}
+
+.career-page .culture-section .text-block p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.career-page .culture-section .text-block .join-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.career-page .culture-section .text-block .join-link:hover {
+    background-color: #1f2937;
+}
+
+.career-page .culture-section .image-block {
+    flex: 1;
+    position: relative;
+    min-height: 300px;
+}
+
+.career-page .culture-section .image-block .main-image {
+    width: 100%;
+    height: 100%;
+    padding: 15px 20px 30px 30px;
+    object-fit: cover;
+    border-radius: 20px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.career-page .culture-section .image-block .overlay-image {
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.career-page .culture-section .image-block .overlay-image.top-left {
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.career-page .culture-section .image-block .overlay-image.bottom-right {
+    bottom: 0;
+    right: 0;
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+}
+
+
+/* Section Rejoignez-nous de la page Carrière */
+.career-page .join-section {
+    padding: 60px 20px;
+    max-width: 100vw;
+    margin: 0 auto 0 60px; /* 250px pour la sidebar + 20px de marge */
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+    /* opacity: 0; */
+    /* transform: translateY(50px); */
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.career-page .join-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.career-page .join-section h2 {
+    font-size: 36px;
+    color: #1f2937;
+    margin-bottom: 20px;
+}
+
+.career-page .join-section p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.career-page .join-section .cta-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.career-page .join-section .cta-btn:hover {
+    transform: scale(1.05);
+    background-color: #1f2937;
+}
+
+
+
+/* Section Recrutements de la page Carrière */
+.career-page .recruitment-section {
+    max-width: 100vw;
+    margin: 0 0 0 60px; /* 250px pour la sidebar + 20px de marge */
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    /* border-radius: 10px; */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+    border-left: 2px #fff solid;
+    border-bottom: 2px #fff solid;
+    /* opacity: 0; */
+    /* transform: translateY(50px); */
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.career-page .recruitment-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.career-page .recruitment-section .recruitment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* gap: 20px; */
+    margin-top: 30px;
+}
+
+.career-page .recruitment-section .recruitment-grid .card2{
+    background-color: #334155;
+}
+
+.career-page .recruitment-section .recruitment-card {
+    background-color: #1f2937;
+    padding: 40px;
+    /* border-radius: 10px; */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.career-page .recruitment-section .recruitment-card h3 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.career-page .recruitment-section .recruitment-card p {
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.6;
+    font-weight: 100;
+}
+
+/* Footer */
+.footer {
+  background-color: #1f2937;
+  padding: 60px 20px 20px;
+  color: white;
+  padding-left: 60px;
+}
+
+.footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  padding-left: 20px;
+  gap: 10px;
+}
+
+.footer .footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 40px;
+  transform: translateY(50px);
+  /* opacity: 0; */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.footer .footer-column.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer .footer-column h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.footer .footer-column p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer .footer-column a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer .footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer .footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer .footer-column ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer .footer-column ul li a:hover {
+  color: #e74c3c;
+}
+
+.footer .footer-column .social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.footer .footer-column .social-links a {
+  color: white;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer .footer-column .social-links a:hover {
+  color: #e74c3c;
+}
+
+.footer .footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+.footer .footer-bottom p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}

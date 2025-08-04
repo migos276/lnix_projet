@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-page">
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="logo">
+      <img src="/static/images/logo.png" alt="Linx Concept Logo" class="logo-img">
+      <h1>Tableau de Bord</h1>
+    </div>
+    <div class="header-actions">
+      <input type="text" placeholder="Rechercher..." class="search-bar" id="search-bar">
+      <div class="dropdown">
+        <i class="fas fa-bars" onclick="toggleDropdown()"></i>
+        <div class="dropdown-content" id="dropdown-content" style="display: none;">
+          <a href="#" onclick="showProfile()">
+            <i class="fas fa-user"></i> Profil
+          </a>
+          <a href="#" onclick="showSettings()">
+            <i class="fas fa-cog"></i> Paramètres
+          </a>
+          <a href="#" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+          </a>
+        </div>
+      </div>
+      <i class="fas fa-user" onclick="toggleLoginModal()" title="Connexion"></i>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="admin-container">
+    <!-- Sidebar Left - Team -->
+    <aside class="sidebar-left">
+      <h2><i class="fas fa-users"></i> Équipe</h2>
+      <div class="creator-cards" id="creator-cards">
+        {{#if creators}}
+          {{#each creators}}
+            <div class="creator-card" data-creator-id="{{id}}" onclick="loadCreatorProfile({{id}})">
+              <img src="{{#if avatar_url}}{{avatar_url}}{{else}}/static/images/default-avatar.jpg{{/if}}"
+                   alt="{{nom}}"
+                   onerror="this.src='/static/images/default-avatar.jpg'">
+              <div class="card-text">
+                <h3>{{nom}}</h3>
+                <p>{{role}}</p>
+                <small class="creator-status">
+                  <i class="fas fa-circle status-online"></i> En ligne
+                </small>
+              </div>
+            </div>
+          {{/each}}
+        {{else}}
+          <div class="empty-state">
+            <i class="fas fa-user-plus"></i>
+            <p>Aucun créateur trouvé</p>
+          </div>
+        {{/if}}
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="creator-profile" id="creator-profile">
+        <!-- Profile Header -->
+        <div class="profile-header">
+          <img src="/static/images/default-avatar.jpg" alt="Profile Image" class="profile-image" id="profile-image">
+          <div class="profile-info">
+            <h2 class="creator-name" id="creator-name">Sélectionnez un créateur</h2>
+            <p class="creator-role" id="creator-role">Rôle: -</p>
+            <div class="profile-stats">
+              <span class="stat">
+                <i class="fas fa-file-alt"></i>
+                <span id="templates-count">0</span> Templates
+              </span>
+              <span class="stat">
+                <i class="fas fa-calendar"></i>
+                Membre depuis <span id="member-since">-</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template Management -->
+        <div class="template-management">
+          <div class="section-header">
+            <h3><i class="fas fa-layer-group"></i> Templates</h3>
+            <div class="template-actions">
+              <button class="add-button" onclick="showAddTemplateForm()">
+                <i class="fas fa-plus"></i> Ajouter un Template
+              </button>
+              <div class="view-toggle">
+                <button class="view-btn active" onclick="toggleView('grid')" title="Vue grille">
+                  <i class="fas fa-th"></i>
+                </button>
+                <button class="view-btn" onclick="toggleView('list')" title="Vue liste">
+                  <i class="fas fa-list"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Template Form -->
+          <div class="add-template-form" id="add-template-form" style="display: none;">
+            <div class="form-header">
+              <h3 id="template-form-title">
+                <i class="fas fa-plus-circle"></i> Ajouter un Template
+              </h3>
+              <button class="close-btn" onclick="hideAddTemplateForm()">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+
+            <form id="template-form" enctype="multipart/form-data">
+              <input type="hidden" id="template-id" name="id">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="template-name">
+                    <i class="fas fa-tag"></i> Nom du Template *
+                  </label>
+                  <input type="text"
+                         id="template-name"
+                         name="name"
+                         placeholder="Ex: Logo Restaurant Moderne"
+                         required>
+                </div>
+
+                <div class="form-group">
+                  <label for="template-type">
+                    <i class="fas fa-file-alt"></i> Type *
+                  </label>
+                  <select id="template-type" name="type" required onchange="updateFileAccept()">
+                    <option value="">Sélectionner le type</option>
+                    <option value="image">Image</option>
+                    <option value="video">Vidéo</option>
+                    <option value="audio">Audio</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="template-description">
+                  <i class="fas fa-align-left"></i> Description *
+                </label>
+                <textarea id="template-description"
+                          name="description"
+                          placeholder="Décrivez votre template..."
+                          rows="3"
+                          required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="template-file">
+                  <i class="fas fa-upload"></i> Fichier *
+                </label>
+                <div class="file-upload-area" onclick="document.getElementById('template-file').click()">
+                  <input type="file"
+                         id="template-file"
+                         name="file"
+                         accept="image/*,video/*,audio/*"
+                         onchange="handleFileSelect(this)"
+                         style="display: none;">
+                  <div class="upload-content">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Cliquez pour sélectionner un fichier</p>
+                    <small>Taille max: 50MB</small>
+                  </div>
+                  <div class="file-preview" id="file-preview" style="display: none;"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="template-visible" name="visibleClients" checked>
+                  <span class="checkmark"></span>
+                  <i class="fas fa-eye"></i> Visible pour les clients
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-primary" id="template-submit-btn" onclick="submitTemplate()">
+                  <i class="fas fa-save"></i> Enregistrer
+                </button>
+                <button type="button" class="btn-secondary" onclick="hideAddTemplateForm()">
+                  <i class="fas fa-times"></i> Annuler
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Templates Grid -->
+          <div class="templates-container">
+            <div class="templates-grid" id="templates-grid">
+              <!-- Templates will be loaded here -->
+              <div class="empty-state" id="templates-empty-state">
+                <i class="fas fa-layer-group"></i>
+                <h3>Aucun template</h3>
+                <p>Commencez par ajouter votre premier template</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Sidebar Right - Admin Management -->
+    <aside class="sidebar-right">
+      <h2><i class="fas fa-cogs"></i> Gestion Admin</h2>
+
+      <!-- Testimonials Section -->
+      <div class="admin-section testimonials-section">
+        <h3><i class="fas fa-quote-left"></i> Témoignages</h3>
+
+        <div class="add-testimonial">
+          <form id="testimonial-form" enctype="multipart/form-data">
+            <div class="form-group">
+              <input type="text"
+                     name="titre"
+                     id="testimonial-title"
+                     placeholder="Titre du témoignage"
+                     required>
+            </div>
+
+            <div class="form-group">
+              <select name="type" id="testimonial-type" required onchange="toggleTestimonialFields(this)">
+                <option value="">Type de témoignage</option>
+                <option value="texte">Écrit</option>
+                <option value="audio">Audio</option>
+                <option value="video">Vidéo</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <textarea name="contenu"
+                        id="testimonial-content"
+                        placeholder="Contenu du témoignage..."
+                        rows="3"
+                        style="display: none;"></textarea>
+              <input type="file"
+                     name="file"
+                     id="testimonial-file"
+                     accept="audio/*,video/*"
+                     style="display: none;">
+            </div>
+
+            <div class="form-group">
+              <input type="number"
+                     name="authorId"
+                     id="testimonial-author"
+                     placeholder="ID Auteur (optionnel)"
+                     min="1">
+            </div>
+
+            <button type="button" class="btn-primary" onclick="submitTestimonial()">
+              <i class="fas fa-plus"></i> Ajouter
+            </button>
+          </form>
+        </div>
+
+        <div class="testimonials-grid" id="testimonials-grid">
+          {{#if testimonials}}
+            {{#each testimonials}}
+              <div class="testimonial-card" data-id="{{id}}">
+                <div class="testimonial-content">
+                  <h4>{{titre}}</h4>
+                  <p class="testimonial-type">
+                    {{#if (eq type "texte")}}
+                      <i class="fas fa-file-text"></i>
+                    {{/if}}
+                    {{#if (eq type "audio")}}
+                      <i class="fas fa-microphone"></i>
+                    {{/if}}
+                    {{#if (eq type "video")}}
+                      <i class="fas fa-video"></i>
+                    {{/if}}
+                    {{type}}
+                  </p>
+                  {{#if contenu}}
+                    <p class="testimonial-excerpt">{{contenu}}...</p>
+                  {{/if}}
+                  {{#if fichier_url}}
+                    <div class="testimonial-media">
+                      {{#if (isAudioType type)}}
+                        <audio controls style="width: 100%; max-width: 200px;">
+                          <source src="/uploads/{{fichier_url}}" type="audio/mpeg">
+                          Votre navigateur ne supporte pas l'audio.
+                        </audio>
+                      {{/if}}
+                      {{#if (isVideoType type)}}
+                        <video controls style="width: 100%; max-width: 200px; height: 120px;">
+                          <source src="/uploads/{{fichier_url}}" type="video/mp4">
+                          Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                  <small class="date-info">
+                    <i class="fas fa-calendar"></i>
+                    {{formattedDate date_creation}}
+                  </small>
+                </div>
+                <div class="card-actions">
+                  <button class="action-btn edit" onclick="editTestimonial({{id}})" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="action-btn delete" onclick="deleteTestimonial({{id}})" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="empty-state">
+              <i class="fas fa-quote-left"></i>
+              <p>Aucun témoignage</p>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+
+      <!-- Partners Section -->
+      <div class="admin-section partners-section">
+        <h3><i class="fas fa-handshake"></i> Partenaires</h3>
+
+        <div class="add-partner">
+          <form id="partner-form" enctype="multipart/form-data">
+            <div class="form-group">
+              <input type="text"
+                     name="name"
+                     id="partner-name"
+                     placeholder="Nom du partenaire"
+                     required>
+            </div>
+
+            <div class="form-group">
+              <div class="file-upload-small">
+                <input type="file"
+                       name="logo"
+                       id="partner-logo"
+                       accept="image/*"
+                       onchange="previewPartnerLogo(this)"
+                       required>
+                <label for="partner-logo">
+                  <i class="fas fa-image"></i> Logo
+                </label>
+                <div class="logo-preview" id="logo-preview"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="url"
+                     name="website"
+                     id="partner-website"
+                     placeholder="Site web (optionnel)">
+            </div>
+
+            <div class="form-group">
+              <textarea name="description"
+                        id="partner-description"
+                        placeholder="Description (optionnel)"
+                        rows="2"></textarea>
+            </div>
+
+            <button type="button" class="btn-primary" onclick="submitPartner()">
+              <i class="fas fa-plus"></i> Ajouter
+            </button>
+          </form>
+        </div>
+
+        <div class="partners-grid" id="partners-grid">
+          {{#if partners}}
+            {{#each partners}}
+              <div class="partner-card" data-id="{{id}}">
+                <div class="partner-logo">
+                  <img src="/uploads/{{logo_url}}"
+                       alt="{{nom}}"
+                       onerror="this.src='/static/default-logo.png'">
+                </div>
+                <div class="partner-info">
+                  <span class="partner-name">{{nom}}</span>
+                  <small class="date-added">
+                    <i class="fas fa-calendar-plus"></i>
+                    {{formattedDate date_ajout}}
+                  </small>
+                </div>
+                <div class="card-actions">
+                  <button class="action-btn edit" onclick="editPartner({{id}})" title="Modifier">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="action-btn delete" onclick="deletePartner({{id}})" title="Supprimer">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="empty-state">
+              <i class="fas fa-handshake"></i>
+              <p>Aucun partenaire</p>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="login-modal" id="login-modal" style="display: none;">
+    <div class="modal-overlay" onclick="toggleLoginModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
+        <button class="close-btn" onclick="toggleLoginModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-username">
+            <i class="fas fa-envelope"></i> Email
+          </label>
+          <input type="email"
+                 id="login-username"
+                 placeholder="votre@email.com"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">
+            <i class="fas fa-lock"></i> Mot de passe
+          </label>
+          <input type="password"
+                 id="login-password"
+                 placeholder="••••••••"
+                 required>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-primary full-width" onclick="submitLogin()">
+            <i class="fas fa-sign-in-alt"></i> Se connecter
+          </button>
+        </div>
+      </form>
+
+      <div class="modal-footer">
+        <a href="#" onclick="showForgotPassword()">Mot de passe oublié ?</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay" style="display: none;">
+    <div class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Chargement...</p>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Edit Testimonial Modal -->
+  <div class="edit-modal" id="edit-testimonial-modal" style="display: none;">
+    <div class="modal-overlay" onclick="closeEditTestimonialModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-edit"></i> Modifier le Témoignage</h2>
+        <button class="close-btn" onclick="closeEditTestimonialModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <form id="edit-testimonial-form" enctype="multipart/form-data">
+        <input type="hidden" id="edit-testimonial-id" name="id">
+
+        <div class="form-group">
+          <label for="edit-testimonial-title">
+            <i class="fas fa-heading"></i> Titre
+          </label>
+          <input type="text"
+                 id="edit-testimonial-title"
+                 name="title"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-testimonial-type">
+            <i class="fas fa-tag"></i> Type
+          </label>
+          <select id="edit-testimonial-type" name="type" required onchange="toggleEditTestimonialFields(this)">
+            <option value="texte">Écrit</option>
+            <option value="audio">Audio</option>
+            <option value="video">Vidéo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <textarea name="content"
+                    id="edit-testimonial-content"
+                    placeholder="Contenu du témoignage..."
+                    rows="3"></textarea>
+          <input type="file"
+                 name="file"
+                 id="edit-testimonial-file"
+                 accept="audio/*,video/*"
+                 style="display: none;">
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-primary" onclick="updateTestimonial()">
+            <i class="fas fa-save"></i> Mettre à jour
+          </button>
+          <button type="button" class="btn-secondary" onclick="closeEditTestimonialModal()">
+            <i class="fas fa-times"></i> Annuler
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Template field toggle function
+    function toggleTestimonialFields(select) {
+      const contentField = document.getElementById('testimonial-content');
+      const fileField = document.getElementById('testimonial-file');
+
+      if (select.value === 'texte') {
+        contentField.style.display = 'block';
+        contentField.required = true;
+        fileField.style.display = 'none';
+        fileField.required = false;
+      } else if (select.value === 'audio' || select.value === 'video') {
+        contentField.style.display = 'none';
+        contentField.required = false;
+        fileField.style.display = 'block';
+        fileField.required = true;
+        fileField.accept = select.value === 'audio' ? 'audio/*' : 'video/*';
+      } else {
+        contentField.style.display = 'none';
+        contentField.required = false;
+        fileField.style.display = 'none';
+        fileField.required = false;
+      }
+    }
+
+    // File accept update function
+    function updateFileAccept() {
+      const typeSelect = document.getElementById('template-type');
+      const fileInput = document.getElementById('template-file');
+
+      switch(typeSelect.value) {
+        case 'image':
+          fileInput.accept = 'image/*';
+          break;
+        case 'video':
+          fileInput.accept = 'video/*';
+          break;
+        case 'audio':
+          fileInput.accept = 'audio/*';
+          break;
+        default:
+          fileInput.accept = 'image/*,video/*,audio/*';
+      }
+    }
+
+    // File select handler
+    function handleFileSelect(input) {
+      const file = input.files[0];
+      const preview = document.getElementById('file-preview');
+
+      if (file) {
+        preview.style.display = 'block';
+        preview.innerHTML = `
+          <div class="file-info">
+            <i class="fas fa-file"></i>
+            <span>${file.name}</span>
+            <small>(${formatFileSize(file.size)})</small>
+          </div>
+        `;
+      } else {
+        preview.style.display = 'none';
+      }
+    }
+
+    // Partner logo preview
+    function previewPartnerLogo(input) {
+      const file = input.files[0];
+      const preview = document.getElementById('logo-preview');
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.innerHTML = '';
+      }
+    }
+
+    // Utility functions
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // Hide add template form
+    function hideAddTemplateForm() {
+      const form = document.getElementById('add-template-form');
+      form.style.display = 'none';
+      document.getElementById('template-form').reset();
+      document.getElementById('file-preview').style.display = 'none';
+    }
+
+    // Show loading
+    function showLoading() {
+      document.getElementById('loading-overlay').style.display = 'flex';
+    }
+
+    // Hide loading
+    function hideLoading() {
+      document.getElementById('loading-overlay').style.display = 'none';
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add animation class after page load
+      setTimeout(() => {
+        document.querySelector('.admin-container').classList.add('visible');
+      }, 100);
+    });
+  </script>
+  <script src="/static/scriptl.js"></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+@media (max-width: 768px) {
+  .about-page .sidebar {
+    display: none; /* Sidebar disparaît */
+  }
+
+  .about-page .header {
+    left: 0; /* Header prend toute la largeur */
+    padding: 0 10px;
+  }
+
+  .about-page .header .menu-icon-mobile {
+    display: block;
+    margin-right: 20px;
+    color: #2c3e50;
+  }
+
+  .about-page .navbar {
+    left: 0; /* Navbar pleine largeur */
+  }
+
+  .about-page .navbar.active {
+    width: 200px;
+  }
+
+  .about-page .navbar ul {
+    margin-top: 80px; /* Ajustement pour mobile */
+  }
+
+  .about-page .hero {
+    padding: 190px 15px;
+    min-height: 90vh;
+  }
+
+  .about-page .hero-title h1 {
+    font-size: 33px;
+    line-height: 1;
+    margin-bottom: 30px;
+  }
+
+  .about-page .hero-title .line {
+    width: 30px;
+    height: 3px;
+  }
+
+  .about-page .hero-content {
+    padding: 30px 20px;
+    max-width: 90%;
+  }
+
+  .about-page .hero-content p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .about-page .hero-content .btn {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+
+  .about-page .why-choose-us {
+    margin: 0 auto; /* Plus de sidebar, donc centré */
+    padding: 40px 15px;
+  }
+
+  .about-page .why-choose-us .reasons {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-page .why-choose-us .column {
+    width: 100%;
+  }
+
+  .about-page .why-choose-us .column.right {
+    margin-top: 0; /* Pas de décalage en responsive */
+  }
+
+  .about-page .why-choose-us .title-block h2 {
+    font-size: 28px;
+  }
+
+  .about-page .why-choose-us .title-block p {
+    font-size: 14px;
+  }
+
+  .about-page .why-choose-us .reason-block {
+    padding: 15px;
+  }
+
+  .about-page .why-choose-us .reason-block .icon {
+    font-size: 35px;
+  }
+
+  .about-page .why-choose-us .reason-block p {
+    font-size: 13px;
+  }
+
+  .about-page .cta-section {
+    padding-left: 20px;
+  }
+
+  .about-page .cta-section .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .about-page .team-section {
+    margin: 0 auto;
+    padding: 40px 15px;
+  }
+
+  .about-page .team-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .about-page .team-card img {
+    height: 150px;
+  }
+
+  .about-page .team-card .card-content {
+    padding: 10px;
+  }
+
+  .about-page .team-card h3 {
+    font-size: 16px;
+  }
+
+  .about-page .team-card p {
+    font-size: 12px;
+  }
+
+  .about-page .team-card .recruit-btn {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .about-page .see-more-btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .about-page .services-section {
+    margin: 0 auto;
+    padding: 40px 15px;
+  }
+
+  .about-page .services-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .about-page .service-card {
+    transform: rotate(0deg); /* Neutralise l'inclinaison */
+    padding: 15px;
+  }
+
+  .about-page .service-card h3 {
+    font-size: 20px;
+  }
+
+  .about-page .service-card p {
+    font-size: 13px;
+  }
+
+  .about-page .service-card .small-text {
+    font-size: 11px;
+  }
+
+  .about-page .service-card .click-btn {
+    font-size: 12px;
+    padding: 6px 15px;
+  }
+
+  .about-page .values-section {
+    margin: 0 auto;
+    padding: 40px 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-page .values-text {
+    padding: 10px;
+  }
+
+  .about-page .values-text h2 {
+    font-size: 26px;
+  }
+
+  .about-page .values-text p {
+    font-size: 14px;
+  }
+
+  .about-page .values-text .join-btn {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
+
+  .about-page .values-image {
+    padding: 10px;
+  }
+
+  .footer {
+    padding-left: 0;
+  }
+
+  .footer .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer .footer-column {
+    text-align: center;
+  }
+
+  .footer .footer-column .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header .search-bar {
+    display: none; /* Barre de recherche disparaît */
+  }
+
+  .header .logo span {
+    font-size: 20px;
+  }
+
+  .navbar.active {
+    width: 150px;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+  }
+
+  .header .search-bar {
+    display: none; /* Barre de recherche disparaît */
+  }
+
+  .header .logo span {
+    font-size: 20px;
+  }
+
+  .navbar.active {
+    width: 150px;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+  }
+
+  .about-page .hero {
+    padding: 0 15px;
+    min-height: 90vh;
+  }
+
+  .about-page .hero-title h1 {
+    font-size: 24px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .about-page .hero-title .line {
+    width: 20px;
+    height: 2px;
+  }
+
+  .about-page .hero-title .highlight {
+    gap: 10px;
+  }
+
+  .about-page .hero-content {
+    padding: 20px 10px;
+    max-width: 100%;
+  }
+
+  .about-page .hero-content p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .about-page .hero-content .btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .about-page .why-choose-us {
+    padding: 30px 10px;
+  }
+
+  .about-page .why-choose-us .title-block h2 {
+    font-size: 24px;
+  }
+
+  .about-page .why-choose-us .title-block p {
+    font-size: 13px;
+  }
+
+  .about-page .why-choose-us .reason-block {
+    padding: 10px;
+  }
+
+  .about-page .why-choose-us .reason-block .icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .about-page .why-choose-us .reason-block p {
+    font-size: 12px;
+  }
+
+  .about-page .cta-section .title h2 {
+    font-size: 24px;
+  }
+  .about-page .cta-section .buttons .btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .about-page .team-section {
+    padding: 30px 10px;
+  }
+
+  .about-page .team-card img {
+    height: 120px;
+  }
+
+  .about-page .team-card h3 {
+    font-size: 14px;
+  }
+
+  .about-page .team-card p {
+    font-size: 11px;
+  }
+
+  .about-page .team-card .recruit-btn {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  .about-page .see-more-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .about-page .services-section {
+    padding: 30px 10px;
+  }
+
+  .about-page .service-card h3 {
+    font-size: 18px;
+  }
+
+  .about-page .service-card p {
+    font-size: 12px;
+  }
+
+  .about-page .service-card .small-text {
+    font-size: 10px;
+  }
+
+  .about-page .service-card .click-btn {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .about-page .values-section {
+    padding: 30px 10px;
+  }
+
+  .about-page .values-text h2 {
+    font-size: 22px;
+  }
+
+  .about-page .values-text p {
+    font-size: 13px;
+  }
+
+  .about-page .values-text .join-btn {
+    font-size: 12px;
+    padding: 6px 15px;
+  }
+
+  .footer .footer-column h3 {
+    font-size: 18px;
+  }
+
+  .footer .footer-column p,
+  .footer .footer-column ul li a {
+    font-size: 12px;
+  }
+
+  .footer .footer-column .social-links a {
+    font-size: 16px;
+  }
+}

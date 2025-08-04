@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linx Concept</title>
+    <link rel="shortcut icon" href="logo_jpg.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style_ressources.css">
+    <link rel="stylesheet" href="css/responsive_ressource.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-+v2x4Z3g7J8k5Q0z5G9F5X5F5X5F5X5F5X5F5F5F5F5F5F5F5F5F5F5F5F5F" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body class="ressource-page">
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <i class="fas fa-bars icon menu-icon"></i>
+        <a href="home.html"><i class="fas fa-home icon fade-in"></i></a>
+        <a href="a_propos.html"><i class="fas fa-info-circle icon fade-in"></i></a>
+        <a href="ressources.html"><i class="fas fa-book icon fade-in"></i></a>
+        <a href="carrieres.html"><i class="fas fa-briefcase icon fade-in"></i></a>
+        <a href="notre_travail.html"><i class="fas fa-project-diagram icon fade-in"></i></a>
+        <a href="contact.html"><i class="fas fa-phone icon fade-in"></i></a>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <ul>
+            <li><a href="home.html">Maison</a></li>
+            <li><a href="a_propos.html">À propos</a></li>
+            <li><a href="ressources.html">Ressources</a></li>
+            <li><a href="carrieres.html">Carrières</a></li>
+            <li><a href="notre_travail.html">Notre travail</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-bars menu-icon-mobile"></i>
+            <img src="logo.png" alt="Linx Concept Logo">
+            <span>Linx</span>
+        </div>
+        <div class="right">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Rechercher...">
+            </div>
+            <a href="tel:+237650218023" class="phone-icon"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/+237650218023" class="whatsapp-icon"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </header>
+
+    <!-- Bouton Retour en haut -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <section class="hero">
+        <div class="title-block">
+            <i class="fas fa-folder-open icon"></i>
+            <h1>Nos Templates</h1>
+            <div class="filters">
+                <a href="#" class="active">Tout</a>
+                <a href="#">Visuel</a>
+                <a href="#">Vidéos</a>
+                <a href="#">Maquette Web</a>
+            </div>
+        </div>
+        <div class="templates">
+            <div class="template-grid">
+                <div class="template-card" data-category="visuel" data-full-desc="Un design graphique créatif pour vos flyers publicitaires." data-creator-name="Jean Dupont" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <img class="media" src="https://via.placeholder.com/300x150" alt="Template Visuel 1">
+                    </div>
+                    <div class="card-content">
+                        <h4>Un design graphique créatif...</h4>
+                        <div class="format">Flyer A4</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+                <div class="template-card" data-category="videos" data-full-desc="Une vidéo promotionnelle pour mettre en avant votre produit." data-creator-name="Marie Leclerc" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <video class="media" muted>
+                            <source src="video1.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                    </div>
+                    <div class="card-content">
+                        <h4>Une vidéo promotionnelle...</h4>
+                        <div class="format">Vidéo 1920x1080</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+                <div class="template-card" data-category="maquette" data-full-desc="Une maquette web moderne pour un site e-commerce." data-creator-name="Pierre Martin" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <img class="media" src="https://via.placeholder.com/300x150" alt="Template Maquette 1">
+                    </div>
+                    <div class="card-content">
+                        <h4>Une maquette web moderne...</h4>
+                        <div class="format">Maquette 1440x900</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+                <div class="template-card" data-category="visuel" data-full-desc="Un design graphique élégant pour vos affiches promotionnelles." data-creator-name="Sophie Roux" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <img class="media" src="https://via.placeholder.com/300x150" alt="Template Visuel 2">
+                    </div>
+                    <div class="card-content">
+                        <h4>Un design graphique élégant...</h4>
+                        <div class="format">Affiche 400x400</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+                <div class="template-card" data-category="videos" data-full-desc="Une vidéo corporate pour présenter votre entreprise." data-creator-name="Luc Durand" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <video class="media" muted>
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                    </div>
+                    <div class="card-content">
+                        <h4>Une vidéo corporate...</h4>
+                        <div class="format">Vidéo 1280x720</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+                <div class="template-card" data-category="maquette" data-full-desc="Une maquette web responsive pour un blog moderne." data-creator-name="Claire Petit" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <img class="media" src="https://via.placeholder.com/300x150" alt="Template Maquette 2">
+                    </div>
+                    <div class="card-content">
+                        <h4>Une maquette web responsive...</h4>
+                        <div class="format">Maquette 1366x768</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+                <div class="template-card" data-category="visuel" data-full-desc="Un design graphique minimaliste pour vos cartes de visite." data-creator-name="Thomas Leroy" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <img class="media" src="https://via.placeholder.com/300x150" alt="Template Visuel 3">
+                    </div>
+                    <div class="card-content">
+                        <h4>Un design graphique minimaliste...</h4>
+                        <div class="format">Carte de visite 85x55</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+                <div class="template-card" data-category="videos" data-full-desc="Une vidéo tutoriel pour expliquer un concept complexe." data-creator-name="Julie Moreau" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <video class="media" muted>
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                    </div>
+                    <div class="card-content">
+                        <h4>Une vidéo tutoriel...</h4>
+                        <div class="format">Vidéo 1920x1080</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+                <div class="template-card" data-category="maquette" data-full-desc="Une maquette web dynamique pour un portfolio créatif." data-creator-name="Antoine Blanc" data-creator-photo="https://via.placeholder.com/30">
+                    <div class="media-container">
+                        <img class="media" src="https://via.placeholder.com/300x150" alt="Template Maquette 3">
+                    </div>
+                    <div class="card-content">
+                        <h4>Une maquette web dynamique...</h4>
+                        <div class="format">Maquette 1920x1080</div>
+                        <a href="#" class="view-btn">Voir</a>
+                    </div>
+                </div>
+            </div>
+            <button class="see-more-btn">Voir plus</button>
+        </div>
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-modal">×</span>
+                <div class="media"></div>
+                <h4>Template Title</h4>
+                <p class="description">Template Description</p>
+                <div class="format">Format</div>
+                <div class="creator-info">
+                    <img src="" alt="Creator Photo">
+                    <span>Creator Name</span>
+                </div>
+                <a href="/contact" class="contact-link">À partir de</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Section CTA -->
+    <section class="cta-section">
+        <div class="title">
+            <h2>Besoin d'un service ?</h2>
+        </div>
+        <div class="buttons">
+            <a href="#contact" class="btn">Nous contacter</a>
+            <a href="#models" class="btn">Scruter les modèles</a>
+        </div>
+    </section>
+
+    <!-- Section Formations -->
+    <section class="formations-section">
+        <div class="left-block">
+            <h2>Formations<br><span class="highlight">Disponibles</span></h2>
+            <p>Découvrez nos formations professionnelles conçues pour booster vos compétences dans le design, la vidéo et le développement web.</p>
+            <a href="/inscription" class="cta-btn">Inscrivez-vous maintenant</a>
+        </div>
+        <div class="right-block">
+            <div class="formation-card">
+                <i class="fas fa-paint-brush icon"></i>
+                <h3>Design Graphique</h3>
+                <p>Maîtrisez Photoshop, Illustrator et les principes fondamentaux du design pour créer des visuels percutants.</p>
+            </div>
+            <div class="formation-card">
+                <i class="fas fa-video icon"></i>
+                <h3>Motion Design</h3>
+                <p>Apprenez After Effects et Premiere Pro pour réaliser des animations et vidéos professionnelles.</p>
+            </div>
+            <div class="formation-card">
+                <i class="fas fa-desktop icon"></i>
+                <h3>Design UI/UX</h3>
+                <p>Concevez des interfaces utilisateur intuitives et optimisées avec Figma et Adobe XD.</p>
+            </div>
+            <div class="formation-card">
+                <i class="fas fa-code icon"></i>
+                <h3>Coding</h3>
+                <p>Initiez-vous à HTML, CSS, JavaScript et créez vos premiers sites web interactifs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divertissement -->
+    <section class="divertissement-section">
+        <i class="fas fa-puzzle-piece icon"></i>
+        <div class="title-wrapper">
+            <h2>Jeu de Réflexion</h2>
+        </div>
+        <p>Amusez-vous et stimulez votre cerveau avec notre jeu de réflexion exclusif ! Téléchargez le PDF et commencez à jouer dès maintenant.</p>
+        <a href="/assets/jeu-de-reflexion.pdf" class="download-btn" download>
+            Télécharger le PDF
+            <i class="fas fa-download icon"></i>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3 class="footer-logo">Linx Concept</h3>
+                <p>Votre partenaire pour des solutions digitales    créatives et innovantes.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#formations">Formations</a></li>
+                    <li><a href="#testimonials">Témoignages</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Ressources</h3>
+                <ul>
+                    <li><a href="#resources-templates">Templates</a></li>
+                    <li><a href="#resources-courses">Cours</a></li>
+                    <li><a href="#careers-testimonials">Carrières</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contactez-nous</h3>
+                <p>Email: <a href="mailto:linxconcept@gmail.com">linxconcept@gmail.com</a></p>
+                <p>Téléphone: +237 650218023</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Linx Concept. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+
+    <script src="js/script_ressource.js"></script>
+</body>
+</html>

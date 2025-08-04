@@ -1,0 +1,269 @@
+@media (max-width: 768px) {
+  .ressource-page .sidebar {
+    display: none; /* Sidebar disparaît */
+  }
+
+  .ressource-page .header {
+    left: 0; /* Header prend toute la largeur */
+    padding: 0 10px;
+  }
+
+  .ressource-page .header .menu-icon-mobile {
+    display: block;
+    margin-right: 20px;
+    color: #2c3e50;
+  }
+
+  .ressource-page .navbar {
+    left: 0; /* Navbar pleine largeur */
+  }
+
+  .ressource-page .navbar.active {
+    width: 200px;
+  }
+
+  .ressource-page .navbar ul {
+    margin-top: 80px; /* Ajustement pour mobile */
+  }
+
+  .ressource-page .hero {
+    margin: 0 auto;
+    padding: 40px 15px;
+  }
+
+  .ressource-page .hero .title-block .filters {
+    align-items: center;
+    justify-content: start;
+  }
+
+  .ressource-page .hero .title-block .filters a {
+    text-align: center;
+  }
+
+  .ressource-page .hero .templates .template-grid {
+    grid-template-columns: 1fr;
+    padding: 0;
+
+    gap: 15px;
+  }
+
+  .ressource-page .hero .templates .template-card .media {
+    height: 120px;
+  }
+
+  .ressource-page .hero .templates .template-card .card-content {
+    padding: 8px;
+  }
+
+  .ressource-page .see-more-btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .ressource-page .cta-section {
+    padding-left: 20px;
+  }
+
+  .ressource-page .cta-section .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ressource-page .formations-section {
+    margin: 0 auto;
+    padding: 40px 15px;
+    flex-direction: column;
+  }
+
+  .ressource-page .formations-section .left-block {
+    text-align: center;
+  }
+
+  .ressource-page .formations-section .right-block {
+    grid-template-columns: 1fr;
+  }
+
+  .ressource-page .formations-section .formation-card {
+    padding: 15px;
+  }
+
+  .ressource-page .divertissement-section {
+    margin: 0 auto;
+    padding: 40px 15px;
+  }
+
+  .ressource-page .divertissement-section .title-wrapper h2 {
+    font-size: 28px;
+  }
+
+  .ressource-page .divertissement-section p {
+    font-size: 14px;
+  }
+
+  .ressource-page .divertissement-section .download-btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .footer {
+    padding-left: 0;
+  }
+
+  .footer .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer .footer-column {
+    text-align: center;
+  }
+
+  .footer .footer-column .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header .search-bar {
+    display: none; /* Barre de recherche disparaît */
+  }
+
+  .header .logo span {
+    font-size: 20px;
+  }
+
+  .navbar.active {
+    width: 150px;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+  }
+
+  .header .search-bar {
+    display: none; /* Barre de recherche disparaît */
+  }
+
+  .header .logo span {
+    font-size: 20px;
+  }
+
+  .navbar.active {
+    width: 150px;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+  }
+
+  .ressource-page .hero {
+    padding: 30px 10px;
+  }
+
+  .ressource-page .hero .title-block h1 {
+    font-size: 28px;
+  }
+
+  .ressource-page .hero .title-block .filters a {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .ressource-page .hero .templates .template-card .media {
+    height: 100px;
+  }
+
+  .ressource-page .hero .templates .template-card h4 {
+    font-size: 14px;
+  }
+
+  .ressource-page .hero .templates .template-card .format {
+    font-size: 11px;
+  }
+
+  .ressource-page .hero .templates .template-card .view-btn {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .ressource-page .see-more-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .ressource-page .cta-section .title h2 {
+    font-size: 24px;
+  }
+  .ressource-page .cta-section .buttons .btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .ressource-page .formations-section {
+    padding: 30px 10px;
+  }
+
+  .ressource-page .formations-section .left-block h2 {
+    font-size: 28px;
+  }
+
+  .ressource-page .formations-section .left-block p {
+    font-size: 14px;
+  }
+
+  .ressource-page .formations-section .left-block .cta-btn {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .ressource-page .formations-section .formation-card h3 {
+    font-size: 18px;
+  }
+
+  .ressource-page .formations-section .formation-card p {
+    font-size: 13px;
+  }
+
+  .ressource-page .formations-section .formation-card .icon {
+    font-size: 35px;
+  }
+
+  .ressource-page .divertissement-section {
+    padding: 30px 10px;
+  }
+
+  .ressource-page .divertissement-section .icon {
+    font-size: 40px;
+  }
+
+  .ressource-page .divertissement-section .title-wrapper h2 {
+    font-size: 24px;
+  }
+
+  .ressource-page .divertissement-section .title-wrapper::before,
+  .ressource-page .divertissement-section .title-wrapper::after {
+    width: 80px;
+  }
+
+  .ressource-page .divertissement-section p {
+    font-size: 13px;
+  }
+
+  .ressource-page .divertissement-section .download-btn {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .footer .footer-column h3 {
+    font-size: 18px;
+  }
+
+  .footer .footer-column p,
+  .footer .footer-column ul li a {
+    font-size: 12px;
+  }
+
+  .footer .footer-column .social-links a {
+    font-size: 16px;
+  }
+}

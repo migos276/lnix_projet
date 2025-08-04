@@ -1,0 +1,233 @@
+@media (max-width: 768px) {
+  .contact-page .sidebar {
+    display: none; /* Sidebar disparaît */
+  }
+
+  .contact-page .header {
+    left: 0; /* Header prend toute la largeur */
+    padding: 0 10px;
+  }
+
+  .contact-page .header .menu-icon-mobile {
+    display: block;
+    margin-right: 20px;
+    color: #2c3e50;
+  }
+
+  .contact-page .navbar {
+    left: 0; /* Navbar pleine largeur */
+  }
+
+  .contact-page .navbar.active {
+    width: 200px;
+  }
+
+  .contact-page .navbar ul {
+    margin-top: 80px; /* Ajustement pour mobile */
+  }
+
+  .contact-page .hero-section {
+    margin: 0 auto;
+    padding: 80px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-page .hero-section .vertical-line {
+    display: none;
+  }
+
+  .contact-page .hero-section .text-block {
+    padding: 20px;
+  }
+
+  .contact-page .hero-section .text-block h1 {
+    font-size: 28px;
+  }
+
+  .contact-page .hero-section .text-block p {
+    font-size: 14px;
+  }
+
+  .contact-page .hero-section .buttons-block {
+    margin: 0 auto;
+  }
+
+  .contact-page .hero-section .buttons-block a {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .contact-page .form-section {
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .contact-page .form-section .form-container {
+    padding: 0 20px;
+    margin: 40px 0;
+  }
+
+  .contact-page .form-section .form-container h2 {
+    font-size: 28px;
+    padding: 20px 0;
+  }
+
+  .contact-page .form-section .form-container form input,
+  .contact-page .form-section .form-container form textarea {
+    font-size: 14px;
+  }
+
+  .contact-page .form-section .form-container form button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .contact-page .faq-section {
+    margin: 0 auto;
+    padding: 40px 15px;
+  }
+
+  .contact-page .faq-section h2 {
+    font-size: 28px;
+  }
+
+  .contact-page .faq-section .faq-question h3 {
+    font-size: 16px;
+  }
+
+  .contact-page .faq-section .faq-answer {
+    font-size: 13px;
+  }
+
+  .footer {
+    padding-left: 0;
+  }
+
+  .footer .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer .footer-column {
+    text-align: center;
+  }
+
+  .footer .footer-column .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header .search-bar {
+    display: none; /* Barre de recherche disparaît */
+  }
+
+  .header .logo span {
+    font-size: 20px;
+  }
+
+  .navbar.active {
+    width: 150px;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+  }
+
+  .header .search-bar {
+    display: none; /* Barre de recherche disparaît */
+  }
+
+  .header .logo span {
+    font-size: 20px;
+  }
+
+  .navbar.active {
+    width: 150px;
+  }
+
+  .navbar ul li a {
+    font-size: 16px;
+  }
+
+  .contact-page .hero-section {
+    padding: 80px 10px;
+    padding-bottom: 15px;
+  }
+
+  .contact-page .hero-section .text-block h1 {
+    font-size: 24px;
+  }
+
+  .contact-page .hero-section .text-block p {
+    font-size: 13px;
+  }
+
+  .contact-page .hero-section .buttons-block a {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  .contact-page .form-section {
+    padding: 0 10px;
+  }
+
+  .contact-page .form-section .form-container {
+    padding: 0 15px;
+    margin: 30px 0;
+  }
+
+  .contact-page .form-section .form-container h2 {
+    font-size: 24px;
+    padding: 15px 0;
+  }
+
+  .contact-page .form-section .form-container form input,
+  .contact-page .form-section .form-container form textarea {
+    font-size: 13px;
+  }
+
+  .contact-page .form-section .form-container form button {
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+
+  .contact-page .faq-section {
+    padding: 30px 10px;
+  }
+
+  .contact-page .faq-section h2 {
+    font-size: 24px;
+  }
+
+  .contact-page .faq-section .faq-question {
+    padding: 10px;
+  }
+
+  .contact-page .faq-section .faq-question h3 {
+    font-size: 14px;
+  }
+
+  .contact-page .faq-section .faq-question .chevron {
+    font-size: 14px;
+  }
+
+  .contact-page .faq-section .faq-answer {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .footer .footer-column h3 {
+    font-size: 18px;
+  }
+
+  .footer .footer-column p,
+  .footer .footer-column ul li a {
+    font-size: 12px;
+  }
+
+  .footer .footer-column .social-links a {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application CRUD</title>
+    <style>
+        /* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Formulaire */
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"] {
+    background-color: #3498db;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+.cancel {
+    background-color: #e74c3c;
+    color: white;
+    margin-left: 10px;
+}
+
+.cancel:hover {
+    background-color: #c0392b;
+}
+
+/* Tableau */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.action-btn {
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background-color: #f39c12;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #d35400;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestion des utilisateurs</h1>
+        
+        <!-- Formulaire d'ajout/modification -->
+        <div class="form-container">
+            <h2 id="form-title">Ajouter un utilisateur</h2>
+            <form id="user-form">
+                <input type="hidden" id="user-id">
+                <div class="form-group">
+                    <label for="name">Nom:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Téléphone:</label>
+                    <input type="tel" id="phone">
+                </div>
+                <button type="submit" id="submit-btn">Enregistrer</button>
+                <button type="button" id="cancel-btn" class="cancel">Annuler</button>
+            </form>
+        </div>
+        
+        <!-- Tableau des utilisateurs -->
+        <div class="table-container">
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="users-list">
+                    <!-- Les utilisateurs seront ajoutés ici dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+let users = [];
+let editingUserId = null;
+
+// DOM Elements
+const userForm = document.getElementById('user-form');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const phoneInput = document.getElementById('phone');
+const userIdInput = document.getElementById('user-id');
+const submitBtn = document.getElementById('submit-btn');
+const cancelBtn = document.getElementById('cancel-btn');
+const usersTable = document.getElementById('users-list');
+const formTitle = document.getElementById('form-title');
+
+// Événements
+document.addEventListener('DOMContentLoaded', () => {
+    loadUsers();
+    setupEventListeners();
+});
+
+function setupEventListeners() {
+    userForm.addEventListener('submit', handleFormSubmit);
+    cancelBtn.addEventListener('click', cancelEdit);
+}
+
+// Charger les utilisateurs (simulation avec des données initiales)
+function loadUsers() {
+    // En réalité, ici vous feriez une requête AJAX vers un serveur
+    // Pour l'exemple, on utilise des données mockées
+    users = [
+        { id: 1, name: 'Jean Dupont', email: 'jean.dupont@example.com', phone: '0123456789' },
+        { id: 2, name: 'Marie Martin', email: 'marie.martin@example.com', phone: '0987654321' },
+        { id: 3, name: 'Pierre Durand', email: 'pierre.durand@example.com', phone: '0654321890' }
+    ];
+    
+    renderUsersTable();
+}
+
+// Afficher les utilisateurs dans le tableau
+function renderUsersTable() {
+    usersTable.innerHTML = '';
+    
+    users.forEach(user => {
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td>${user.phone}</td>
+            <td>
+                <button class="action-btn edit-btn" data-id="${user.id}">Modifier</button>
+                <button class="action-btn delete-btn" data-id="${user.id}">Supprimer</button>
+            </td>
+        `;
+        
+        usersTable.appendChild(row);
+    });
+    
+    // Ajouter les événements aux boutons
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => editUser(e.target.dataset.id));
+    });
+    
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => deleteUser(e.target.dataset.id));
+    });
+}
+
+// Gérer la soumission du formulaire
+function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    const userData = {
+        name: nameInput.value,
+        email: emailInput.value,
+        phone: phoneInput.value
+    };
+    
+    if (editingUserId) {
+        // Mise à jour d'un utilisateur existant
+        updateUser(editingUserId, userData);
+    } else {
+        // Création d'un nouvel utilisateur
+        createUser(userData);
+    }
+    
+    resetForm();
+}
+
+// Créer un nouvel utilisateur
+function createUser(userData) {
+    // En réalité, ici vous feriez une requête POST vers un serveur
+    const newUser = {
+        id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
+        ...userData
+    };
+    
+    users.push(newUser);
+    renderUsersTable();
+}
+
+// Mettre à jour un utilisateur
+function updateUser(id, userData) {
+    // En réalité, ici vous feriez une requête PUT vers un serveur
+    const index = users.findIndex(user => user.id === parseInt(id));
+    
+    if (index !== -1) {
+        users[index] = { ...users[index], ...userData };
+        renderUsersTable();
+    }
+    
+    editingUserId = null;
+    formTitle.textContent = 'Ajouter un utilisateur';
+}
+
+// Supprimer un utilisateur
+function deleteUser(id) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
+        // En réalité, ici vous feriez une requête DELETE vers un serveur
+        users = users.filter(user => user.id !== parseInt(id));
+        renderUsersTable();
+    }
+}
+
+// Modifier un utilisateur
+function editUser(id) {
+    const userToEdit = users.find(user => user.id === parseInt(id));
+    
+    if (userToEdit) {
+        editingUserId = userToEdit.id;
+        formTitle.textContent = 'Modifier un utilisateur';
+        
+        // Remplir le formulaire avec les données de l'utilisateur
+        nameInput.value = userToEdit.name;
+        emailInput.value = userToEdit.email;
+        phoneInput.value = userToEdit.phone;
+        userIdInput.value = userToEdit.id;
+        
+        // Faire défiler jusqu'au formulaire
+        document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Annuler la modification
+function cancelEdit() {
+    editingUserId = null;
+    resetForm();
+    formTitle.textContent = 'Ajouter un utilisateur';
+}
+
+// Réinitialiser le formulaire
+function resetForm() {
+    userForm.reset();
+    userIdInput.value = '';
+}
+    </script>
+</body>
+</html>
