@@ -203,8 +203,32 @@ public class MainVerticle extends AbstractVerticle {
     }
   }
 
-  private void renderHome(RoutingContext ctx) {
+  private void renderHello(RoutingContext ctx) {
     ctx.reroute("/static/linx/hello.html");
+  }
+
+  private void renderHome(RoutingContext ctx) {
+    ctx.reroute("/static/linx/home.html");
+  }
+
+  private void renderPropos(RoutingContext ctx) {
+    ctx.reroute("/static/linx/a_propos.html");
+  }
+
+  private void renderCarrieres(RoutingContext ctx) {
+    ctx.reroute("/static/linx/carrieres.html");
+  }
+
+  private void renderContact(RoutingContext ctx) {
+    ctx.reroute("/static/linx/contact.html");
+  }
+
+  private void renderTravail(RoutingContext ctx) {
+    ctx.reroute("/static/linx/notre_travail.html");
+  }
+
+  private void renderRessources(RoutingContext ctx) {
+    ctx.reroute("/static/linx/resssources.html");
   }
 
   private void handlestartLogin(RoutingContext ctx) {
