@@ -203,7 +203,7 @@ public class MainVerticle extends AbstractVerticle {
   private void handlestartLogin(RoutingContext ctx) {
     JsonObject data = new JsonObject()
       .put("title", "Admin-login Dashboard - Linx Concept");
-    renderTemplate(ctx, data, "src/main/resources/templates/login.hbs");
+    renderTemplate(ctx, data, "templates/login.hbs");
 
   }
 
@@ -286,7 +286,7 @@ public class MainVerticle extends AbstractVerticle {
               data.put("partners", partnersRes.result().getRows());
             }
 
-            renderTemplate(ctx, data, "src/main/resources/templates/index.hbs");
+            renderTemplate(ctx, data, "templates/index.hbs");
           });
         });
       } else {
