@@ -6,11 +6,11 @@
     <title>Linx Concept</title>
     <link rel="shortcut icon" href="logo_jpg.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/style_travail.css">
-    <link rel="stylesheet" href="css/responsive_travail.css">
+    <link rel="stylesheet" href="css/style_contact.css">
+    <link rel="stylesheet" href="css/responsive_contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-+v2x4Z3g7J8k5Q0z5G9F5X5F5X5F5X5F5X5F5F5F5F5F5F5F5F5F5F5F5F5F" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="travail-page">
+<body class="contact-page">
 
     <!-- Overlay -->
     <div class="overlay"></div>
@@ -18,7 +18,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <i class="fas fa-bars icon menu-icon"></i>
-        <a href="home.html"><i class="fas fa-home icon fade-in"></i></a>
+        <a href="../../../../../../public/home.html"><i class="fas fa-home icon fade-in"></i></a>
         <a href="a_propos.html"><i class="fas fa-info-circle icon fade-in"></i></a>
         <a href="ressources.html"><i class="fas fa-book icon fade-in"></i></a>
         <a href="carrieres.html"><i class="fas fa-briefcase icon fade-in"></i></a>
@@ -29,7 +29,7 @@
     <!-- Navbar -->
     <div class="navbar">
         <ul>
-            <li><a href="home.html">Maison</a></li>
+            <li><a href="../../../../../../public/home.html">Maison</a></li>
             <li><a href="a_propos.html">À propos</a></li>
             <li><a href="ressources.html">Ressources</a></li>
             <li><a href="carrieres.html">Carrières</a></li>
@@ -62,98 +62,83 @@
 
     <!-- Section Hero -->
     <section class="hero-section">
-        <div class="hero-container">
-            <div class="service-card" style="background-image: url('image10.jpeg');">
-                <div class="gradient"></div>
-                <div class="text">Services de <br> Design Graphique</div>
-            </div>
-            <div class="service-card" style="background-image: url('image10.jpeg');">
-                <div class="gradient"></div>
-                <div class="text">Services de <br>Développement Web</div>
-            </div>
-            <div class="service-card" style="background-image: url('image10.jpeg');">
-                <div class="gradient"></div>
-                <div class="text">Services de <br>Vidéographie</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Témoignages -->
-    <section class="testimonials">
-        <div class="title">
-            <div class="line"></div>
-            <h2>Témoignages</h2>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial text-testimonial">
-                <p class="quote">"Linx Concept a transformé notre site web en un outil puissant pour notre  entreprise. Service exceptionnel !"</p>
-                <p class="author">- Marie Dupont</p>
-            </div>
-            <div class="testimonial audio-testimonial">
-                <audio controls>
-                    <source src="audio1.mp3" type="audio/mpeg">
-                    Votre navigateur ne supporte pas la balise audio.
-                </audio>
-                <p class="author">- Jean Martin</p>
-            </div>
-            <div class="testimonial video-testimonial">
-                <video controls width="300">
-                    <source src="video1.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-                <p class="author">- Sophie Laurent</p>
-            </div>
-            <div class="testimonial text-testimonial">
-                <p class="quote">"Une équipe réactive et créative, nos campagnes marketing ont explosé grâce à eux."</  p>
-                <p class="author">- Pierre Leclerc</p>
-            </div>
-            <div class="testimonial audio-testimonial">
-                <audio controls>
-                    <source src="audio1.mp3" type="audio/mpeg">
-                    Votre navigateur ne supporte pas la balise audio.
-                </audio>
-                <p class="author">- Claire Dubois</p>
-            </div>
-            <div class="testimonial video-testimonial">
-                <video controls width="300">
-                    <source src="video1.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la balise vidéo.
-                </video>
-                <p class="author">- Thomas Morel</p>
-            </div>
-        </div>
-
-        <div class="see-more">
-            <a href="#careers-testimonials" class="btn">Voir plus</a>
-        </div>
-
-    </section>
-
-    <!-- Section Partenaires -->
-    <section class="partners-section">
         <div class="text-block">
-            <h2>Nos Partenaires</h2>
-            <p>Découvrez les grandes entreprises qui font confiance à Linx Concept pour leurs solutions digitales innovantes et créatives.</p>
-            <a href="/services" class="cta-btn">Commencer</a>
+            <h1>À propos de Nous</h1>
+            <p>Linx Concept est une agence dédiée à transformer vos idées en solutions digitales innovantes. Nous combinons créativité et expertise pour répondre à vos besoins uniques.</p>
         </div>
-        <div class="logo-grid">
-            <div class="logo-card">
-                <img src="logo.png" alt="Microsoft Logo">
+        <div class="vertical-line"></div>
+        <div class="buttons-block">
+            <a href="/services">Services</a>
+            <a href="/equipe">Équipe</a>
+            <a href="/templates">Templates</a>
+        </div>
+    </section>
+
+    <!-- Section Formulaire -->
+    <section class="form-section">
+        <div class="form-container">
+            <h2>Nous Contacter</h2>
+            <form action="mailto:linxconcept@gmail.com" method="POST"   enctype="text/plain">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="Nom" placeholder="Votre nom"  required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="Email" placeholder="Votre  email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone</label>
+                    <input type="tel" id="telephone" name="Téléphone"   placeholder="Votre téléphone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="Message" placeholder="Votre message"   rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Soumettre</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Section FAQ -->
+    <section class="faq-section">
+        <h2>Foire aux Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Quels services propose Linx Concept ?</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Linx Concept offre des services de design graphique, développement web, et formations professionnelles pour booster vos compétences digitales.</p>
+                </div>
             </div>
-            <div class="logo-card">
-                <img src="logo.png" alt="Google Logo">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Comment puis-je postuler à un poste ?</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Visitez notre page Carrière pour découvrir les offres disponibles et postuler directement en ligne via le formulaire dédié.</p>
+                </div>
             </div>
-            <div class="logo-card">
-                <img src="logo.png" alt="Apple Logo">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Proposez-vous des templates gratuits ?</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Oui, nous proposons une sélection de templates gratuits sur notre page Ressources. Vous pouvez les télécharger et les personnaliser selon vos besoins.</p>
+                </div>
             </div>
-            <div class="logo-card">
-                <img src="logo.png" alt="Amazon Logo">
-            </div>
-            <div class="logo-card">
-                <img src="logo.png" alt="Apple Logo">
-            </div>
-            <div class="logo-card">
-                <img src="logo.png" alt="Amazon Logo">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Combien de temps faut-il pour un projet de design ?</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>La durée d'un projet dépend de sa complexité. En général, un projet de design graphique prend entre 1 et 3 semaines. Contactez-nous pour un devis précis !</p>
+                </div>
             </div>
         </div>
     </section>
@@ -199,6 +184,7 @@
         </div>
     </footer>
 
-    <script src="js/script_travail.js"></script>
+    <script src="js/script_contact.js"></script>
+
 </body>
 </html>
