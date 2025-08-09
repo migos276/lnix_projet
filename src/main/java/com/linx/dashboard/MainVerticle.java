@@ -139,9 +139,9 @@ public class MainVerticle extends AbstractVerticle {
     router.route("/uploads/*").handler(StaticHandler.create(UPLOAD_DIR));
 
     //website
-    router.get("/linx").handler(this::renderHome);
+    router.get("/").handler(this::renderHome);
     // Authentication
-    router.get("/").handler(this::handlestartLogin);
+    router.get("/linx").handler(this::handlestartLogin);
     router.post("/api/login").handler(this::handleLogin);
     router.get("/redirect").handler(this::handleredirect);
 
