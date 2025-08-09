@@ -133,14 +133,18 @@ public class MainVerticle extends AbstractVerticle {
       .setBodyLimit(MAX_FILE_SIZE);
 
     router.route().handler(bodyHandler);
+
+    // Static files handler
+    router.route("/static/*").handler(StaticHandler.create("webroot/static"));
+    router.route("/uploads/*").handler(StaticHandler.create(UPLOAD_DIR));
+
+    //website
+    router.get("/linx").handler(this::renderHome);
     // Authentication
     router.get("/").handler(this::handlestartLogin);
     router.post("/api/login").handler(this::handleLogin);
     router.get("/redirect").handler(this::handleredirect);
 
-    // Static files handler
-    router.route("/static/*").handler(StaticHandler.create("webroot/static"));
-    router.route("/uploads/*").handler(StaticHandler.create(UPLOAD_DIR));
 
     // Main dashboard route
     router.get("/dashboard").handler(this::handleDashboard);
@@ -190,6 +194,10 @@ public class MainVerticle extends AbstractVerticle {
     } catch (Exception e) {
       System.err.println("Failed to create upload directory: " + e.getMessage());
     }
+  }
+
+  private void renderHome(RoutingContext ctx) {
+    ctx.reroute("/static/linx/hello.html");
   }
 
   private void handlestartLogin(RoutingContext ctx) {
